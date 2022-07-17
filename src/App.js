@@ -15,11 +15,13 @@ function App() {
   const [fetched, setFetched] = useState(false);
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
   
   const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
   const login = async (provider) => {
     setLoading(true);
     setErr("");
+    
     if (!addr) {
 
       await authenticate({signingMessage: "Log in" , provider})
@@ -29,15 +31,16 @@ function App() {
           if (address) {
           setAddr(address);
           
-          Web3API.account.getNFTs({chain: "polygon", address: "0x9BeD455088a8f879123B7e17ad1C3F2B489935dc"})
+          Web3API.account.getNFTs({chain: "polygon", address})
             .then(({result}) => {
               setLoading(false);
              // console.log(res);
              // res.forEach(())
              //console.log(result);
              setFetched(true);
+             let found = false;
              result.forEach(obj => {
-              console.log(obj);
+              found = true;
               if (obj.token_address.toLowerCase() === "0x07a886834bb7Cf8439a4905561a1ce1C5C2064da".toLowerCase()) {
                 setConfirmed(true);
                 fetch(`https://d2fpytyvizqk1j.cloudfront.net/confirm/${address}`, {method: "GET"})
@@ -46,10 +49,20 @@ function App() {
                //   setInvite(res);
                 })
                 .then(res => {
+              //    console.log(res);
+                  if (res.invite)
                   setInvite(res.invite);
+                })
+                .catch(() => {
+               
+                  setErr("Could not find any 'buidler' channel. Make sure this bot is on a server and that the server has a buidlers channel")
                 })
               }
              })
+             if (!found) {
+              setErr("This account doesn't own a Buidler NFT. Try again with another address");
+             }
+             
             })
           }
         })
@@ -65,16 +78,16 @@ function App() {
       <main id = "modal">
       <h2> Welcome to Buidler's Tribe NFT Verifcation! </h2>
       <p> Connect with a wallet below to join the Buidler's channel </p>
-     {!addr && 
+     {(!addr || err) && 
      <>
      <button disabled = {loading} onClick={() => login("metamask")} className = {"call-to-action"} style = {{background: "orange", color: "white"}}> Connect with MetaMask</button>
      </>}
-     {addr && (fetched? (confirmed? <h3 style = {{color: "green"}}> {invite? <>You have been confirmed </> : <>Loading invitation...</>} </h3> : <h3 style = {{color: "red"}}> This account doesn't own a Buidler NFT. Try again with another address </h3>) : <h3 style = {{color: "orange"}}> Loading... </h3>)}
+     {addr && (fetched? (confirmed? <h3 style = {{color: "green"}}> {invite? <>You have been confirmed </> : (!err && <>Loading invitation...</>)} </h3> : <h3 style = {{color: "red"}}>  </h3>) : <h3 style = {{color: "orange"}}> Loading... </h3>)}
       <br />
-     {confirmed && (
+     {invite && (
       <button className="call-to-action" style = {{background: "blue", color: "white"}}  onClick = {() => window.open(invite)}> Join Buidlers Channel in BuidlersTribe </button>
      )}
-     <span style = {{color: "red"}}> {err && "ERROR: " + err} </span>
+     <h3 style = {{color: "red"}}> {err && "ERROR: " + err} </h3>
       </main>
     </div>
   );
