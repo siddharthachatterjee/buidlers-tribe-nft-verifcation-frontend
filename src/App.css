@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+#modal-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+#modal-container main {
+  width: 50vw;
+  min-height: 200px;
+  padding: 50px;
+  position: relative;
+  border-radius: 50px;
+  text-align: center;
+  background-color: whitesmoke;
+  border: 2px solid #1c1c1c;
+  color: var(--theme-complementary);
+
+  
+}
+
+a {
+  
+}
