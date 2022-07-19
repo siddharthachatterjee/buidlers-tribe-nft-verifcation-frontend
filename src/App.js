@@ -1,7 +1,7 @@
 
 import './App.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {useMoralis, useMoralisWeb3Api} from "react-moralis";
 
@@ -18,6 +18,12 @@ function App() {
   const [notFound, setNotFound] = useState(false);
   
   const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
+  useEffect(() => {
+    if (err) {
+      logout();
+      setAddr("");
+    }
+  }, [err])
   const login = async (provider) => {
     setLoading(true);
     setErr("");
@@ -76,9 +82,9 @@ function App() {
   return (
     <div id = "modal-container">
       <main id = "modal">
-      <h2> Welcome to Buidler's Tribe NFT Verifcation! </h2>
-      <p> Connect with a wallet below to join the Buidler's channel </p>
-     {(!addr || err) && 
+      <h2> Welcome to Buidlers Tribe NFT Verifcation! </h2>
+      <p> Connect with a wallet below to join the Buidlers channel </p>
+     {(!addr) && 
      <>
      <button disabled = {loading} onClick={() => login("metamask")} className = {"call-to-action"} style = {{background: "orange", color: "white"}}> Connect with MetaMask</button>
      </>}
