@@ -25,6 +25,7 @@ function App() {
     }
   }, [err])
   const login = async (provider) => {
+    console.log(window.location.href.split("/")[window.location.href.split("/").length - 1]);
     setLoading(true);
     setErr("");
     
@@ -49,7 +50,7 @@ function App() {
               found = true;
               if (obj.token_address.toLowerCase() === "0x07a886834bb7Cf8439a4905561a1ce1C5C2064da".toLowerCase()) {
                 setConfirmed(true);
-                fetch(`https://d2fpytyvizqk1j.cloudfront.net/confirm/${address}`, {method: "GET"})
+                fetch(`https://d2fpytyvizqk1j.cloudfront.net/confirm/${address}/${window.location.href.split("/")[window.location.href.split("/").length - 1]}`, {method: "GET"})
                 .then(txt => {
                   return txt.json();
                //   setInvite(res);
@@ -61,7 +62,7 @@ function App() {
                 })
                 .catch(() => {
                
-                  setErr("Could not find any 'buidler' channel. Make sure this bot is on a server and that the server has a buidlers channel")
+                  setErr("API Error occured. Has your link already been used? Try typing !verify again")
                 })
               }
              })
@@ -82,18 +83,22 @@ function App() {
   return (
     <div id = "modal-container">
       <main id = "modal">
-      <h2> Welcome to Buidlers Tribe NFT Verifcation! </h2>
-      <p> Connect with a wallet below to join the Buidlers channel </p>
-     {(!addr) && 
-     <>
-     <button disabled = {loading} onClick={() => login("metamask")} className = {"call-to-action"} style = {{background: "orange", color: "white"}}> Connect with MetaMask</button>
-     </>}
-     {addr && (fetched? (confirmed? <h3 style = {{color: "green"}}> {invite? <>You have been confirmed </> : (!err && <>Loading invitation...</>)} </h3> : <h3 style = {{color: "red"}}>  </h3>) : <h3 style = {{color: "orange"}}> Loading... </h3>)}
-      <br />
-     {invite && (
-      <button className="call-to-action" style = {{background: "blue", color: "white"}}  onClick = {() => window.open(invite)}> Join Buidlers Channel in BuidlersTribe </button>
-     )}
-     <h3 style = {{color: "red"}}> {err && "ERROR: " + err} </h3>
+        <img src = "/logo.png" width = "20%" />
+        <div style={{position: "relative", top: "-50px"}}>
+
+        <h2 > Welcome to Buidlers Tribe NFT Verifcation! </h2>
+        <p> Connect with a wallet below to join the Buidlers channel </p>
+      {(!addr) && 
+      <>
+      <button disabled = {loading} onClick={() => login("metamask")} className = {"call-to-action"} style = {{background: "orange", color: "white"}}> Connect with MetaMask</button>
+      </>}
+      {addr && (fetched? (confirmed? <h3 style = {{color: "green"}}> {invite? <>You have been confirmed </> : (!err && <>Loading invitation...</>)} </h3> : <h3 style = {{color: "red"}}>  </h3>) : <h3 style = {{color: "orange"}}> Loading... </h3>)}
+        <br />
+      {invite && (
+        <button className="call-to-action" style = {{background: "blue", color: "white"}}  onClick = {() => window.open(invite)}> Join Buidlers Channel in BuidlersTribe </button>
+      )}
+      <h3 style = {{color: "red"}}> {err && "ERROR: " + err} </h3>
+        </div>
       </main>
     </div>
   );
