@@ -20,10 +20,10 @@ function App() {
   const id = number[number.length - 1] || 0;//;[window.location.href.split("/").length - 1];
   const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
   useEffect(() => {
-    if (err) {
-      logout();
-      setAddr("");
-    }
+    // if (err) {
+    //   logout();
+    //   setAddr("");
+    // }
   }, [err])
   const login = async (provider) => {
     console.log();
@@ -85,26 +85,42 @@ function App() {
   return (
     <div>
 
-      {((Date.now() - id) < 24 * 60 * 60)? <div id = "modal-container">
-        <main id = "modal">
-          <img src = "/logo.png" width = "20%" />
-          <div style={{position: "relative", top: "-50px"}}>
+      {<div id = "modal-container">
     
-          <h2 > Welcome to Buidlers Tribe NFT Verifcation! </h2>
-          <p> Connect with a wallet below to join the Buidlers channel </p>
-        {(!addr) && 
-        <>
-        <button disabled = {loading} onClick={() => login("metamask")} className = {"call-to-action"} style = {{background: "orange", color: "white"}}> Connect with MetaMask</button>
-        </>}
-        {addr && (fetched? (confirmed? <h3 style = {{color: "green"}}> {invite? <>You have been confirmed </> : (!err && <>Loading invitation...</>)} </h3> : <h3 style = {{color: "red"}}>  </h3>) : <h3 style = {{color: "orange"}}> Loading... </h3>)}
-          <br />
-        {invite && (
-          <button className="call-to-action" style = {{background: "blue", color: "white"}}  onClick = {() => window.open(invite)}> Join Buidlers Channel in BuidlersTribe </button>
-        )}
-        <h3 style = {{color: "red"}}> {err && "ERROR: " + err} </h3>
-          </div>
-        </main>
-      </div>: "ERROR: Link expired. Type !verify again"}
+          <div id = "left">
+            {/* <img src = "/Gilroy-Medium/Gilroy-Medium.svg"></img> */}
+            <h3 id = "heading-text"> Confirm your NFT to join <span> Verified Buidlers</span> channel & get </h3>
+            <div className='line' />
+            <div className='line' />
+            <h3 id = "exclusive-text"> Exclusive </h3>
+            <div className='titles'>
+              <h3>AMAs</h3>
+              <h3>Mentoring Session</h3>
+              <h3> Access to Buidl Menu</h3>
+            </div>
+            {(!addr || err) && 
+            <>
+            <button disabled = {loading || err} onClick={() => login("metamask")} className = {"call-to-action"}> Verify NFT <span class="iconify" data-icon="logos:metamask-icon"></span> </button>
+            {err && <span onClick = {() => {
+              logout();
+              setAddr("");
+              login("metamask");
+            }}className='try-again'>Try Again?</span>}
+            </>}
+            {addr && (fetched? (confirmed? <h3 style = {{color: "green"}}> {invite? <>You're in! Click the button below to go the verified-buidlers channel. </> : (!err && <>Loading invitation...</>)} </h3> : <h3 style = {{color: "red"}}>  </h3>) : <h3 style = {{color: "orange"}}> Loading... </h3>)}
+              <br />
+            {invite && (
+              <button className="call-to-action"   onClick = {() => window.open(invite)}> Join Verified Buidlers </button>
+            )}
+            <h3 style = {{color: "red"}}> {err && "ERROR: " + err} </h3>
+        
+        </div>
+        <div id = "right">
+          <img src = "/right.png" width = "100%" />
+        </div>
+          
+      
+      </div>}
     </div>
   );
 }

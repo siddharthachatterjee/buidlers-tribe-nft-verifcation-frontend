@@ -41,10 +41,82 @@
   display: flex;
   width: 100vw;
   height: 100vh;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   /* padding-top: 20vh; */
-  text-align: center;
+ 
+}
+#left, #right {
+  height: 80vh;
+  width: 40vw;
+ 
+}
+
+#left .line {
+  width: 246px;
+  height: 1px;
+  background-color: #FFFFFF;
+  text-align: left;
+  margin-bottom: 5px;
+
+}
+
+#left #heading-text {
+  
+  font-size: 28px;
+  font-family: 'Gilroy';
+  font-weight: 500;
+  color: #FFFFFF;
+  font-style: normal;
+  max-width: 400px;
+}
+#left #heading-text span {
+  font-style: italic;
+  color: #2263C5;
+}
+
+#left #exclusive-text {
+  font-family: 'GilroyBold';
+font-style: normal;
+font-weight: 500;
+font-size: 32px;
+line-height: 110%;
+/* or 35px */
+
+
+background: linear-gradient(120.72deg, #7D4702 -1.51%, #FDD265 57.83%, #683E08 102.06%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+
+}
+
+#left .titles h3 {
+  font-family: 'Gilroy';
+font-style: normal;
+font-weight: 600;
+font-size: 48px;
+line-height: 60%;
+/* or 72px */
+
+
+color: #FFFFFF;
+
+}
+
+.try-again {
+  font-family: 'Gilroy';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 150%;
+/* identical to box height, or 30px */
+
+text-align: center;
+
+color: #0D99FF;
+cursor: pointer;
 }
 #modal-container main {
   width: 50vw;

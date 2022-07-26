@@ -1,3 +1,5 @@
+import "./Gilroy-Medium/Gilroy-Medium.ttf";
+import "./Gilroy-SemiBold/Gilroy-SemiBold.ttf";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';

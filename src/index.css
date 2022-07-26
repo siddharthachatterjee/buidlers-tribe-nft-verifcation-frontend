@@ -1,3 +1,7 @@
+:root {
+  --background: #040C10;
+
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,23 +9,44 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #040C10;
+  ;
 }
 
+@font-face {
+  font-family: "Gilroy";
+  src: local("Gilroy"), url("./Gilroy-Medium/Gilroy-Medium.ttf");
+  
+}
+@font-face {
+  font-family: "GilroyBold";
+  src: local("GilroyBold"), url("./Gilroy-SemiBold/Gilroy-SemiBold.ttf");
+  
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 .call-to-action {
-  border: none;
-  outline: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 21px;
-  transition: all 1s;
-  cursor: pointer;
-  margin: 10px;
-  border-radius: 20px;
+  display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 12px 28px;
+font-size: 24px;
+font-family: 'Gilroy';
+color: #FFFFFF;
+width: 388px;
+height: 45px;
+
+background: #0D99FF;
+border-radius: 62px;
+cursor: pointer;
+}
+
+.call-to-action span {
+  margin-left: 5px;
 }
 
 .call-to-action:disabled {
