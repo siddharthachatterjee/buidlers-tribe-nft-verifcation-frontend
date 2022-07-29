@@ -86,19 +86,15 @@ function App() {
     <div>
 
       {<div id = "modal-container">
-    
           <div id = "left">
-            {/* <img src = "/Gilroy-Medium/Gilroy-Medium.svg"></img> */}
             <h3 id = "heading-text"> Confirm your NFT to join <span> Verified Buidlers</span> channel & get </h3>
-            <div className='line' />
-            <div className='line' />
             <h3 id = "exclusive-text"> Exclusive </h3>
             <div className='titles'>
               <h3>AMAs</h3>
               <h3>Mentoring Session</h3>
               <h3> Access to Buidl Menu</h3>
             </div>
-            {(!addr || err) && 
+            {(!addr || err) &&
             <>
             <button disabled = {loading || err} onClick={() => login("metamask")} className = {"call-to-action"}> Verify NFT <span class="iconify" data-icon="logos:metamask-icon"></span> </button>
             {err && <span onClick = {() => {
@@ -113,10 +109,10 @@ function App() {
               <button className="call-to-action"   onClick = {() => window.open(invite)}> Join Verified Buidlers </button>
             )}
             <h3 style = {{color: "red"}}> {err && "ERROR: " + err} </h3>
-        
+
         </div>
         <div id = "right">
-          <img src = "/right.png" width = "100%" />
+          <img src = "/verify-nft-image.png" width = "100%" />
         </div>
           
       
