@@ -109,7 +109,9 @@ function App() {
               <button className="call-to-action"   onClick = {() => window.open(invite)}> Join Verified Buidlers </button>
             )}
             <h3 style = {{color: "red"}}> {err && "ERROR: " + err} </h3>
-
+            <p style = {{fontFamily: "Gilroy", color: "white"}}>
+              Get the Buidler NFT by creating a startup profile on <a href = "https://buidl.so"> buidl.so </a>
+            </p>
         </div>
         <div id = "right">
           <img src = "/verify-nft-image.png" width = "100%" />
