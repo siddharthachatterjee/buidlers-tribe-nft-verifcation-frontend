@@ -2,12 +2,15 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap-reverse;
-  height: 100vh;
   justify-content: space-between;
-  align-items: center;
   /* max-width: 1200px; */
+  align-items: center;
+  margin-top: calc(var(--margin-l)*4);
   margin-left: calc(var(--margin-l)*2);
   margin-right: calc(var(--margin-l)*2);
+}
+.full-screen {
+  height: 100vh;
 }
 @media screen and (min-width: 720px) {
   #modal-container {
@@ -15,6 +18,27 @@
     margin-right: calc(var(--margin-l)*4);
   }
 }
+.text-heading {
+  background-color: var(--bg-2);
+  display: block;
+  padding: 12px;
+  margin-bottom: var(--margin-l);
+}
+.text-heading > p {
+  font-family: "Gilroy-Medium";
+  font-size: var(--font-size-m);
+  margin: 0px;
+  text-align: center;
+  color: var(--text-color);
+}
+.text-heading > p > a {
+  font-style: italic;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+
 #left,
 #right {
   /* height: 80vh;
@@ -61,9 +85,14 @@
 #left .titles h3 {
   font-family: "GilroyBold";
   font-size: var(--font-size-xl);
-  line-height: 60%;
+  line-height: auto;
   /* or 72px */
   color: var(--text-color);
+}
+@media screen and (min-width: 720px) {
+  #left .titles h3 {
+    line-height: 60%;
+  }
 }
 
 .try-again {
