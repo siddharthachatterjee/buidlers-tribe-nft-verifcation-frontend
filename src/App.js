@@ -84,8 +84,11 @@ function App() {
   }
   return (
     <div>
-
-      {<div id = "modal-container">
+      {<div className='full-screen'>
+        <div className='text-heading'>
+          <p>Get the BuidlersNFT by creating your startup profile on <a target={'_blank'} href="https://buidl.so/user/register">buidl.so</a></p>
+        </div>
+        <div id = "modal-container">
           <div id = "left">
             <h3 id = "heading-text"> Confirm your NFT to join <span> Verified Buidlers</span> channel & get </h3>
             <h3 id = "exclusive-text"> Exclusive </h3>
@@ -110,13 +113,14 @@ function App() {
             )}
             <h3 style = {{color: "red"}}> {err && "ERROR: " + err} </h3>
 
+          </div>
+          <div id = "right">
+            <img src = "/verify-nft-image.png" width = "100%" />
+          </div>
+
         </div>
-        <div id = "right">
-          <img src = "/verify-nft-image.png" width = "100%" />
-        </div>
-          
-      
-      </div>}
+      </div>
+      }
     </div>
   );
 }

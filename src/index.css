@@ -49,6 +49,7 @@
   --background: #040c10;
   --text-color: #ffffff;
   --cta: #0D99FF;
+  --bg-2: #141516;
 }
 button, input[type="submit"], input[type="reset"] {
 	background: none;
@@ -97,4 +98,9 @@ code {
 .call-to-action:disabled {
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
 }
