@@ -77,7 +77,7 @@ function App() {
         })
         .catch(function (error) {
          
-          setErr(error.message);
+          setErr(`Could not get signature. Please make sure you have metamask installed on a supported browser and that you are connecting to the website and signing when the pop-up comes.`);
           setLoading(false);
         });
     }
