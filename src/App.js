@@ -64,7 +64,7 @@ function App() {
                 })
                 .catch(() => {
                
-                  setErr("API Error occured. Has your link already been used? Try typing !verify again")
+                  setErr("API Error occured.  Has this address already been used to verify? Has your link expired or been used? Try typing !verify again")
                 })
               }
              })
